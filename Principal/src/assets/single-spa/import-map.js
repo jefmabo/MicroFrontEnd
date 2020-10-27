@@ -6,7 +6,7 @@ System.import('single-spa').then(function (singleSpa) {
         function (location) {
             return location.pathname.startsWith('/content1')
         }
-        );
+    );
 
     singleSpa.registerApplication(
         'content2',
@@ -16,5 +16,7 @@ System.import('single-spa').then(function (singleSpa) {
         function (location) {
             return location.pathname.startsWith('/content2')
         });
+
+    singleSpa.start();
 });
 
