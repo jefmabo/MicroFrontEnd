@@ -11,7 +11,7 @@ System.import('single-spa').then(function (singleSpa) {
     singleSpa.registerApplication(
         'content2',
         function () {
-            return System.import('/content2')
+            return System.import('content2')
         },
         function (location) {
             return location.pathname.startsWith('/content2')
