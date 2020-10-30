@@ -2,7 +2,7 @@
 
 Neste projeto busco desenvolver uma aplicação Angular aplicando os conceitos de micro front-end.
 
-São três aplicações sendo a Principal a aplicação root (raiz) e duas aplicações filhas (Content1 e Content2).
+São três aplicações sendo a Principal é a aplicação root (raiz) e duas aplicações filhas (Content1 e Content2).
 
 ### Passo-a-passo
 
@@ -240,8 +240,8 @@ const routes: Routes = [
 export class AppRoutingModule { }
 ```
 
-No arquivo app.component.html do Content1 e do Content2 vamos remover o conteúdo que é gerado padrão e substituir pela tag `router-outlet></router-outlet>`.
+No arquivo app.component.html do Content1 e do Content2 vamos remover o conteúdo que é gerado padrão e substituir pela tag `<router-outlet></router-outlet>`.
 
-Antes de executar as aplicações é bom também executar o comando npm install nas aplicações Content1 e Content2 para instalar alguma dependência do single-spa-angular.
+Antes de executar as aplicações é bom também executar o comando `npm install` nas aplicações Content1 e Content2 para instalar alguma dependência do single-spa-angular.
 
-Neste ponto acredito que esteja tudo funcionando corretamente, agora basta executar cada uma das aplicações utilizando o comando npm start e acessar a aplicação principal em http://localhost:4200.
+Neste ponto acredito que esteja tudo funcionando corretamente, agora basta executar cada uma das aplicações utilizando o comando `npm start` e acessar a aplicação principal em http://localhost:4200.
