@@ -13,7 +13,7 @@ First of all, we will create our root application, to do this we just need to ex
 
 In the file src/app.component.html we will clear the content and let as below:
 
-```
+```html
 <h1>Micro front-end</h1>
 <a routerLink="/content1">Content 1</a>
 <a routerLink="/content2" style="margin-left:  20px;">Content 2</a>
@@ -26,7 +26,7 @@ First we will create the file src/assets/single-spa/import-map.json, this file i
 
 The content is something like below:
 
-```
+```json
 {
     "imports": {
         "content1": "http://localhost:4201/main.js",
@@ -42,7 +42,7 @@ The next file wich we will create will be the src/assets/single-spa/import-windo
 
 The content will be something like below:
 
-```
+```javascript
 window.content1 = 'http://localhost:4201/'
 
 
@@ -53,7 +53,7 @@ Lastly we will create the file src/assets/single-spa/import-map.js.
 
 Do you remember the single-spa imported in the file import-map.json? So, now it enter in action, with this library we will do the register of each one of our front-end.
 
-```
+```javascript
 System.import('single-spa').then(function (singleSpa) {
     singleSpa.registerApplication(
         'content1', function () {
@@ -81,7 +81,7 @@ System.import('single-spa').then(function (singleSpa) {
 
 Created this 3 files, now we will import in the intex.html of the our root application. In the header (<head></head>) is necessary import the file import-map.json as well some libraries to everything works well. On below we have part of code with all this imports.
 
-```
+```html
  <meta name="importmap-type" content="systemjs-importmap">
   <script type="systemjs-importmap" src="assets/single-spa/import-map.json"></script>
   
@@ -98,7 +98,7 @@ In the first and second line is where we import the import-map.json, the others 
 
 In the html body is necessary inject the files to register our front-ends.
 
-```
+```html
 <body>
   <app-root></app-root>
   <script src="assets/single-spa/import-window-var.js"></script>
@@ -110,7 +110,7 @@ Now, we will create a empty component to we can map the routes of our front-ends
 
 After create the component, we will remove the @Component property style, the method ngOnInit and the interface OnInit and will have the template empty, in the final we will have a compoment as below:
 
-```
+```ts
 import { Component, OnInit } from '@angular/core';
 
 
@@ -129,7 +129,7 @@ export class EmptyRouteComponent {
 
 Made this, now we will configure our routes in the file app-routing.module.ts.
 
-```
+```ts
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmptyRouteComponent } from './empty-route/empty-route.component';
@@ -170,7 +170,7 @@ When running this command, maybe you will can have to answer two questions about
 
 In the Content1 front-end package.json file, we will modify the property 'script start', it's have to be as below:
 
-```
+```json
 "scripts" : {
   ...
   "start" : "ng serve --port 4201",
@@ -180,7 +180,7 @@ In the Content1 front-end package.json file, we will modify the property 'script
 
 In the Content2 front-end package.json file, we will modify the property 'script start', it's have to be as below:
 
-```
+```json
 "scripts" : {
   ...
   "start" : "ng serve --port 4202",
@@ -198,7 +198,7 @@ Inside of Content1 project folder, we will execute the command `ng g c home-cont
 
 The routing module of the Content1 application should look like you can see below:
 
-```
+```ts
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeContent1Component } from './home-content1/home-content1.component';
@@ -221,7 +221,7 @@ export class AppRoutingModule { }
 
 The routing module of the Content2 application should look like you can see below:
 
-```
+```ts
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeContent2Component } from './home-content2/home-content2.component';

@@ -12,7 +12,7 @@ Primeiro vamos criar nossa aplicação root, para isso basta executar o comando 
 
 No arquivo src/app.component.html vamos limpar o conteúdo e deixar conforme abaixo:
 
-```
+```html
 <h1>Micro front-end</h1>
 <a routerLink="/content1">Content 1</a>
 <a routerLink="/content2" style="margin-left:  20px;">Content 2</a>
@@ -25,7 +25,7 @@ Primeiro criaremos o arquivo src/assets/single-spa/import-map.json, este arquivo
 
 O conteúdo deve ser algo como abaixo:
 
-```
+```json
 {
     "imports": {
         "content1": "http://localhost:4201/main.js",
@@ -41,7 +41,7 @@ O próximo arquivo que criaremos será o src/assets/single-spa/import-window-var
 
 Seu conteúdo será algo como abaixo:
 
-```
+```javascript
 window.content1 = 'http://localhost:4201/'
 
 
@@ -52,7 +52,7 @@ Por último iremos criar o arquivo src/assets/single-spa/import-map.js.
 
 Lembra do single-spa importado no arquivo import-map.json? Então, agora ele entra em ação, com essa biblioteca faremos o registro de cada um dos nossos front-end.
 
-```
+```javascript
 System.import('single-spa').then(function (singleSpa) {
     singleSpa.registerApplication(
         'content1', function () {
@@ -79,7 +79,7 @@ System.import('single-spa').then(function (singleSpa) {
 ```
 Criado estes 3 arquivos agora os importaremos na index.html da nossa aplicação principal. No cabeçalho (<head></head>) é necessário a importação do arquivo import-map.json bem como algumas bibliotecas para que tudo funcione corretamente. Abaixo temos o trecho com todas estas importações.
 
-```
+```html
  <meta name="importmap-type" content="systemjs-importmap">
   <script type="systemjs-importmap" src="assets/single-spa/import-map.json"></script>
   
@@ -96,7 +96,7 @@ Na primeira e segunda linha é onde importamos o import-map.json, as demais são
 
 No corpo do HTML é necessário injetar os arquivos em que registramos nossos front-ends.
 
-```
+```html
 <body>
   <app-root></app-root>
   <script src="assets/single-spa/import-window-var.js"></script>
@@ -108,7 +108,7 @@ Agora iremos criar um componente vazio para que possamos mapear as rotas de noss
 
 Após criado o componente removeremos a propriedade styles de @Component, o método ngOnInit e a interface OnInit e deixaremos o template vazio, ao final teremos um componente como abaixo:
 
-```
+```ts
 import { Component, OnInit } from '@angular/core';
 
 
@@ -127,7 +127,7 @@ export class EmptyRouteComponent {
 
 Feito isso, agora configuraremos nossas rotas no arquivo app-routing.module.ts
 
-```
+```ts
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { EmptyRouteComponent } from './empty-route/empty-route.component';
@@ -168,7 +168,7 @@ Ao executar este comando você poderá ter que responder duas perguntas a respei
 
 No arquivo package.json do front-end Content1 alteraremos o comando script start, deverá ficar como abaixo:
 
-```
+```json
 "scripts" : {
   ...
   "start" : "ng serve --port 4201",
@@ -178,7 +178,7 @@ No arquivo package.json do front-end Content1 alteraremos o comando script start
 
 No arquivo package.json do front-end Content2 alteraremos o comando script start, deverá ficar como abaixo:
 
-```
+```json
 "scripts" : {
   ...
   "start" : "ng serve --port 4202",
@@ -196,7 +196,7 @@ Dentro da pasta do projeto Content1 executamos o comando `ng g c home-content1` 
 
 O routing-module da aplicação Content1 deve ficar como abaixo:
 
-```
+```ts
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeContent1Component } from './home-content1/home-content1.component';
@@ -219,7 +219,7 @@ export class AppRoutingModule { }
 
 O routing-module da aplicação Content2 deve ficar como abaixo:
 
-```
+```ts
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeContent2Component } from './home-content2/home-content2.component';
